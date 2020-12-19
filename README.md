@@ -27,6 +27,6 @@ phi = phi + pi/2/100;      %phi滚转缓增大
 
 
 
-![1608352771166.png](images\1608352771166.png)
+![程序二效果](https://github.com/Ray005/Matlab_Attitude_Display_MPU6050/blob/main/images/1608352771166.png?raw=true)
 
 此独立程序可以很方便地移植到其他matlab项目中
