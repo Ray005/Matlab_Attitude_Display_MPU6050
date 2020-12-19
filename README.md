@@ -14,7 +14,7 @@
 ### 1.Attitude_cul_MPU6050
 
 
-![姿态检测-仅加速度传感器.gif](images/姿态检测-仅加速度传感器.gif)
+![[姿态检测-仅加速度传感器.gif](images/姿态检测-仅加速度传感器.gif)](https://github.com/Ray005/Matlab_Attitude_Display_MPU6050/blob/main/images/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B-%E4%BB%85%E5%8A%A0%E9%80%9F%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8.gif?raw=true)
 
 
 ### 2.Attitude_Display_PointMethod 程序效果：创建一个三角形，通过自动更改欧拉角缓慢转动它
