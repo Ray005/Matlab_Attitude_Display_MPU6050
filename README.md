@@ -17,7 +17,7 @@
 
 ### 2.Attitude_Display_PointMethod 程序效果：创建一个三角形，通过自动更改欧拉角缓慢转动它
 
-通过更改注释来更改不同的维度：滚转$\phi$、俯仰$\theta$、偏航 $\psi$
+通过更改注释来更改不同的维度：滚转phi、俯仰theta、偏航psi
 
 ``` matlab
 phi = phi + pi/2/100;      %phi滚转缓增大
