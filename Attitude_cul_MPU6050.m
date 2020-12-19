@@ -1,8 +1,8 @@
 clear;clc;
 
-scom1 = instrfind('Type', 'serial', 'Port', 'COM7', 'Tag', ''); % 查找串口对象
+scom1 = instrfind('Type', 'serial', 'Port', 'COM4', 'Tag', ''); % 查找串口对象
 if isempty(scom1)               % 如果串口对象不存在则建立
-    scom1 = serial('COM7');
+    scom1 = serial('COM4');
 else                      % 否则使用已存在的对象
     fclose(scom1);
     scom1 = scom1(1);
@@ -25,17 +25,27 @@ s_y = [point_a(2,1), point_b(2,1), point_c(2,1), point_a(2,1);
        point_a(2,1), point_c(2,1), point_d(2,1), point_a(2,1)];
 s_z = [point_a(3,1), point_b(3,1), point_c(3,1), point_a(3,1);
        point_a(3,1), point_c(3,1), point_d(3,1), point_a(3,1)];
+h4 = surf(s_x, s_y, s_z);
+
 
 while(1)
+%for i=1:10;
+while(1)
 data = fscanf(scom1,'A%f,%f,%f G%f,%f,%f');
-%fprintf('%s\n',data);
+if data(1)<2
+    break;
+end
+end
+%data_multidim(i,1:6) = data(1:6);
+
 if(scom1.BytesAvailable)    %清空缓冲区
     fread(scom1,scom1.BytesAvailable);
 %fprintf('%f,%f\n',phi_acc,theta_acc);
 end
-
-phi_acc =  (atan2( --data(2),(sqrt(data(3) ^ 2 + data(1) ^ 2))))/3.14*180;
-theta_acc= (atan2( -data(1), sqrt(data(3) ^ 2 + data(2) ^ 2)))/3.14*180;
+%end
+phi_acc =  (atan2( --data(2),(sqrt(data(3) ^ 2 + data(1) ^ 2))));
+theta_acc= (atan2( -data(1), sqrt(data(3) ^ 2 + data(2) ^ 2)));
+figure(1)
 % put your figure code here%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 point_a = RZ(RY(RX([1,0,0]',phi_acc),theta_acc),0);
 point_b = RZ(RY(RX([0,-1,0]',phi_acc),theta_acc),0);
@@ -48,17 +58,23 @@ s_y = [point_a(2,1), point_b(2,1), point_c(2,1), point_a(2,1);
 point_a(2,1), point_c(2,1), point_d(2,1), point_a(2,1)];
 s_z = [point_a(3,1), point_b(3,1), point_c(3,1), point_a(3,1);
 point_a(3,1), point_c(3,1), point_d(3,1), point_a(3,1)];
+h4.XData = s_x;
+h4.YData = s_y;
+h4.ZData = s_z;
 
 h4 = surf(s_x, s_y, s_z);
+str = ['滚转:',num2str(phi_acc/pi*180,5),'°  ','俯仰:',num2str(theta_acc/pi*180,5),'°'];
+title(str);
 grid on
 xlim([-1 1])
 ylim([-1 1])
 zlim([-1 1])
 
-h4.XData = s_x;
-h4.YData = s_y;
-h4.ZData = s_z;
-pause(0.05);
+% figure(2)
+% peaks();
+% view(phi_acc/3.14*180,theta_acc/3.14*180);
+
+% pause(0.05);
 end
 
 

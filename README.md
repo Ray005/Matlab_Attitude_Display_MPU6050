@@ -13,7 +13,9 @@
 
 ### 1.Attitude_cul_MPU6050
 
-(留坑)
+
+![姿态检测-仅加速度传感器.gif](images/姿态检测-仅加速度传感器.gif)
+
 
 ### 2.Attitude_Display_PointMethod 程序效果：创建一个三角形，通过自动更改欧拉角缓慢转动它
 
